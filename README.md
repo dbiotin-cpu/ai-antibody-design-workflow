@@ -18,13 +18,13 @@ Unlike conventional tutorials that simply reproduce published examples, this pro
 
 # Workflow
 
-```
+
 
 <p align="center">
   <img src="figures/workflow.png" alt="AI Antibody Design Workflow" width="900">
 </p>
 
-```
+
 
 ---
 
