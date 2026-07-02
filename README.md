@@ -20,23 +20,9 @@ Unlike conventional tutorials that simply reproduce published examples, this pro
 
 ```
 
-PD-L1 crystal structure (5X8L)
-│
-├── Extract epitope residues
-│
-├── Crop target structure
-│
-├── RFantibody
-│ Backbone generation
-│
-├── ProteinMPNN
-│ Sequence design
-│
-├── RoseTTAFold2
-│ Structure prediction
-│
-└── Boltz
-Independent structural validation
+<p align="center">
+  <img src="figures/workflow.png" alt="AI Antibody Design Workflow" width="900">
+</p>
 
 ```
 
