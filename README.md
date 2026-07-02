@@ -26,7 +26,6 @@ Unlike conventional tutorials that simply reproduce published examples, this pro
 
 
 
----
 
 # Methods
 
@@ -35,14 +34,13 @@ Unlike conventional tutorials that simply reproduce published examples, this pro
 To focus the design on the antibody binding site, interface residues between PD-L1 and Atezolizumab were identified from the experimentally determined complex (PDB: 5X8L). Residues within **5 Å** of the antibody were extracted, and the target was cropped to residues **A35–A135** for subsequent antibody design.
 
 <p align="center">
-  <img src="figures/epitope_extraction.png" alt="PD-L1 epitope extraction" width="850">
+  <img src="figures/epitope extraction.png" alt="PD-L1 epitope extraction" width="850">
 </p>
 
 <p align="center">
 <b>Figure 2.</b> Epitope identification from the PD-L1–Atezolizumab complex. Interface residues (red) were extracted and used to define the cropped PD-L1 target (A35–A135).
 </p>
 
----
 
 ## 2. Target Cropping
 
@@ -57,7 +55,7 @@ Cropping reduces computational cost while preserving the complete antibody epito
 The cropped PD-L1 structure was used as the design target for RFantibody. The model generated multiple de novo antibody backbone candidates positioned to recognize the selected epitope.
 
 <p align="center">
-  <img src="figures/RFantibody_Design.png" alt="RFantibody backbone generation" width="850">
+  <img src="figures/RFantibody Design.png" alt="RFantibody backbone generation" width="850">
 </p>
 
 <p align="center">
