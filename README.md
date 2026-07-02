@@ -32,23 +32,15 @@ Unlike conventional tutorials that simply reproduce published examples, this pro
 
 ## 1. Epitope Extraction
 
-Starting from the experimentally determined Atezolizumab–PD-L1 complex (PDB: 5X8L), interface residues were identified using Biopython.
+To focus the design on the antibody binding site, interface residues between PD-L1 and Atezolizumab were identified from the experimentally determined complex (PDB: 5X8L). Residues within **5 Å** of the antibody were extracted, and the target was cropped to residues **A35–A135** for subsequent antibody design.
 
-Contact residues within 5 Å were extracted and used to define the target epitope.
+<p align="center">
+  <img src="figures/epitope_extraction.png" alt="PD-L1 epitope extraction" width="850">
+</p>
 
-Example:
-
-```
-
-PD-L1 contact residues
-
-45, 49, 51...
-111–125
-
-Suggested crop:
-A35–135
-
-```
+<p align="center">
+<b>Figure 2.</b> Epitope identification from the PD-L1–Atezolizumab complex. Interface residues (red) were extracted and used to define the cropped PD-L1 target (A35–A135).
+</p>
 
 ---
 
@@ -60,14 +52,17 @@ Cropping reduces computational cost while preserving the complete antibody epito
 
 ---
 
-## 3. RFantibody
+## 3. RFantibody Backbone Generation
 
-RFantibody generated de novo antibody backbones against the cropped PD-L1 target.
+The cropped PD-L1 structure was used as the design target for RFantibody. The model generated multiple de novo antibody backbone candidates positioned to recognize the selected epitope.
 
-Output:
+<p align="center">
+  <img src="figures/RFantibody_Design.png" alt="RFantibody backbone generation" width="850">
+</p>
 
-- 10 backbone candidates
-
+<p align="center">
+<b>Figure 3.</b> Representative RFantibody-generated antibody backbone docked against the cropped PD-L1 target. PD-L1 is shown in cyan, while the designed antibody heavy and light chains are shown in orange and yellow, respectively.
+</p>
 ---
 
 ## 4. ProteinMPNN
