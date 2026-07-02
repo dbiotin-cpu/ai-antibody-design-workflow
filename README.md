@@ -59,7 +59,7 @@ Cropping substantially reduces computational cost while preserving the complete 
 The cropped PD-L1 structure was used as the design target for RFantibody. Multiple de novo antibody backbone candidates were generated against the selected epitope.
 
 <p align="center">
-  <img src="figures/rfantibody_design.png" alt="RFantibody backbone generation" width="850">
+  <img src="figures/RFantibody_Design.png" alt="RFantibody backbone generation" width="850">
 </p>
 
 <p align="center">
