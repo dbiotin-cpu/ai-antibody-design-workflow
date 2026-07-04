@@ -290,6 +290,18 @@ final_candidate_boltz_model_0.pdb
 
 <p align="center"> <img src="figures/rf2_vs_boltz_binding_mode_overlay.png" alt="RF2 and Boltz binding mode overlay" width="900"> </p> <p align="center"> <b>Figure 6.</b> Comparison of RF2 and Boltz antibody binding modes after PD-L1 alignment. The PD-L1 target chains from the RF2 and Boltz models were aligned using Cα atoms, and the antibody poses were overlaid to compare predicted binding modes. PD-L1 is shown in cyan, the RF2 antibody in orange/yellow, and the Boltz antibody in marine/violet. The overlay shows that Boltz independently recovered an epitope-focused binding mode near the RF2-selected design pose. </p>
 
+<p align="center">
+  <img src="figures/epitope_scoring_summary.png" alt="Epitope scoring summary" width="850">
+</p>
+
+
+<p align="center">
+  <b>Figure 7.</b> Quantitative summary of epitope-focused antibody design performance across the workflow.
+  RFantibody backbone generation produced clean epitope-focused candidates with perfect precision but limited coverage.
+  RF2 refinement improved epitope coverage while maintaining epitope precision of 1.0 and zero off-epitope contacts.
+  Boltz validation further supported an epitope-focused binding mode, with higher epitope coverage and modest off-epitope contact.
+</p>
+
 Boltz predicted that the final antibody sequence retained an epitope-focused binding mode on PD-L1, covering **21 of 28** atezolizumab-contacting epitope residues with **0.91 epitope precision**.
 
 This orthogonal validation supports the interpretation that the final designed antibody sequence is biased toward the intended PD-L1 epitope rather than an unrelated surface patch.
