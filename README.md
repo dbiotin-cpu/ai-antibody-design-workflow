@@ -38,7 +38,7 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 
 ### 1. Reference Epitope Extraction
 
-The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues.
+The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues. The epitope extraction script (`01. extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues A35–A135 using `02. crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
 
 This reference epitope served two purposes:
 
