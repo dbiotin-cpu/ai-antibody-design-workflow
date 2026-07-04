@@ -20,16 +20,16 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 ## Workflow
 
 <p align="center">
-  <img src="figures/workflow.png" alt="AI Antibody Design Workflow" width="900">
+  <img src="figures/workflow.png" alt="AI antibody design workflow" width="900">
 </p>
 
 <p align="center">
-<b>Figure 1.</b> Epitope-focused AI antibody design workflow against PD-L1.
-    The pipeline starts from the PD-L1–atezolizumab reference complex (PDB: 5X8L),
-    extracts the atezolizumab-like epitope, crops PD-L1 to residues 35–135 (in chain A),
-    generates hotspot-guided RFantibody backbones, designs sequences with ProteinMPNN,
-    predicts complexes with RF2, ranks candidates using custom epitope-aware scoring,
-    and validates the final candidate with Boltz.
+  <b>Figure 1.</b> Epitope-focused AI antibody design workflow against PD-L1.
+  The pipeline starts from the PD-L1–atezolizumab reference complex (PDB: 5X8L),
+  extracts the atezolizumab-like epitope, crops PD-L1 to residues 35–135 in chain A,
+  generates hotspot-guided RFantibody backbones, designs sequences with ProteinMPNN,
+  predicts complexes with RF2, ranks candidates using custom epitope-aware scoring,
+  and validates the final candidate with Boltz.
 </p>
 
 ---
@@ -38,7 +38,9 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 
 ### 1. Reference Epitope Extraction
 
-The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues. The epitope extraction script (`01_extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues 35–135 (in chain A) using `02_crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
+The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues.
+
+The epitope extraction script (`01_extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues 35–135 in chain A using `02_crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
 
 This reference epitope served two purposes:
 
@@ -50,7 +52,8 @@ This reference epitope served two purposes:
 </p>
 
 <p align="center">
-<b>Figure 2.</b> Identification of PD-L1 epitope residues from the atezolizumab–PD-L1 complex. Reference epitope residues are shown on the PD-L1 surface and were used to guide hotspot-based antibody design.
+  <b>Figure 2.</b> Identification of PD-L1 epitope residues from the atezolizumab–PD-L1 complex.
+  Reference epitope residues are shown on the PD-L1 surface and were used to guide hotspot-based antibody design.
 </p>
 
 ---
@@ -71,7 +74,7 @@ This cropped target retained the atezolizumab-contacting epitope and neighboring
 
 <p align="center">
   <b>Figure 3.</b> PD-L1 target cropping strategy. The PD-L1 chain from the
-  atezolizumab–PD-L1 reference complex was cropped to residues 35–135 (in chain A) while
+  atezolizumab–PD-L1 reference complex was cropped to residues 35–135 in chain A while
   preserving the reference epitope. Epitope residues are shown in red, and hotspot
   residues used for hotspot-guided RFantibody design are shown in orange.
 </p>
@@ -110,9 +113,10 @@ Backbone candidates were scored for epitope engagement, and the top two backbone
 </p>
 
 <p align="center">
-  <b>Figure 4.</b> Hotspot-guided RFantibody backbone candidates targeting the PD-L1 epitope. 
-  Two top RFantibody backbone candidates are shown after hotspot-guided design against the cropped 
-  PD-L1 antigen. PD-L1 is shown in cyan, antibody heavy chains in orange, and light chains in yellow. Reference epitope residues are shown in red, and hotspot residues used to guide RFantibody design 
+  <b>Figure 4.</b> Hotspot-guided RFantibody backbone candidates targeting the PD-L1 epitope.
+  Two top RFantibody backbone candidates are shown after hotspot-guided design against the cropped
+  PD-L1 antigen. PD-L1 is shown in cyan, antibody heavy chains in orange, and light chains in yellow.
+  Reference epitope residues are shown in red, and hotspot residues used to guide RFantibody design
   are highlighted in orange.
 </p>
 
@@ -143,7 +147,7 @@ Because ProteinMPNN primarily modifies sequence while preserving backbone geomet
 
 The 10 ProteinMPNN-designed antibody candidates were folded and refined as antibody–PD-L1 complexes using RF2.
 
-A key technical issue encountered during this step was an environment mismatch between RFantibody-compatible `SE3Transformer` and the `SE3Transformer` installed under the RFdiffusion environment. Using the incorrect SE3Transformer implementation produced invalid RF2 coordinates. This was resolved by explicitly prioritizing the RFantibody-compatible SE3Transformer in `PYTHONPATH`:
+A key technical issue encountered during this step was an environment mismatch between the RFantibody-compatible `SE3Transformer` and the `SE3Transformer` installed under the RFdiffusion environment. Using the incorrect SE3Transformer implementation produced invalid RF2 coordinates. This was resolved by explicitly prioritizing the RFantibody-compatible SE3Transformer in `PYTHONPATH`:
 
 ```bash
 export PYTHONPATH=/workspace/RFantibody/include/SE3Transformer:/workspace/RFantibody/src:$PYTHONPATH
@@ -162,7 +166,7 @@ model.model_weights = /workspace/RFantibody/weights/RF2_ab.pt
 
 ### 7. Custom Epitope-Aware Scoring
 
-A custom Python scoring script was used to compare each predicted antibody–PD-L1 complex against the atezolizumab reference epitope.
+A custom Python scoring script (`03_score_epitope_contacts.py`) was used to compare each predicted antibody–PD-L1 complex against the atezolizumab reference epitope.
 
 The scoring evaluated:
 
@@ -177,13 +181,13 @@ The scoring evaluated:
 
 ---
 
-### 8. Independent Validation with Boltz
+### 8. Orthogonal Computational Validation with Boltz
 
-The final selected antibody sequence was submitted to Boltz as an orthogonal structure prediction check. The final selected antibody sequence was submitted to Boltz as an orthogonal structure prediction check.
+The final selected antibody sequence was submitted to Boltz as an orthogonal computational structure prediction check.
 
-The final RF2 candidate sequence was extracted using `04_extract_candidate_sequences.py`, which prints the PD-L1 target chain, antibody heavy chain, and antibody light chain sequences from the selected RF2-predicted complex. These sequences were then used to prepare the Boltz input YAML file, `final_candidate_boltz.yaml`, for independent structural validation.
+The final RF2 candidate sequence was extracted using `04_extract_candidate_sequence.py`, which prints the PD-L1 target chain, antibody heavy chain, and antibody light chain sequences from the selected RF2-predicted complex. These sequences were then used to prepare the Boltz input YAML file, `final_candidate_boltz.yaml`.
 
-Boltz was not used for RFantibody backbone generation, ProteinMPNN sequence design, or RF2 refinement. Therefore, Boltz served as an independent validation step to assess whether the final antibody sequence could recover an epitope-focused PD-L1-binding pose.
+Boltz was not used for RFantibody backbone generation, ProteinMPNN sequence design, or RF2-based candidate ranking. Therefore, Boltz served as a structure prediction cross-check to assess whether the final designed antibody sequence could recover an epitope-focused PD-L1-binding pose.
 
 ---
 
@@ -194,13 +198,13 @@ Boltz was not used for RFantibody backbone generation, ProteinMPNN sequence desi
 | Step | Output |
 |---|---|
 | Reference epitope extraction | Atezolizumab-contacting PD-L1 epitope from `5X8L` |
-| Target preparation | Cropped PD-L1 target, residues A35–A135 |
+| Target preparation | Cropped PD-L1 target, residues 35–135 in chain A |
 | Hotspot-guided RFantibody | 5 antibody Fv backbone candidates |
 | Backbone selection | Top 2 epitope-focused backbones |
 | ProteinMPNN | 10 sequence-designed candidates |
 | RF2 | 10 predicted antibody–PD-L1 complex structures |
 | Custom scoring | Final candidate selected by epitope coverage, precision, and off-epitope contacts |
-| Boltz | Independent structural validation of the final candidate |
+| Boltz | Orthogonal computational structure prediction check of the final candidate |
 
 ---
 
@@ -270,9 +274,9 @@ This candidate represents a clean epitope-focused antibody design: it engages a 
 
 ---
 
-### Boltz Independent Validation
+### Boltz Structural Cross-Check
 
-Boltz independently predicted a PD-L1-binding pose for the final antibody sequence.
+Boltz predicted a PD-L1-binding pose for the final antibody sequence.
 
 ```text
 Boltz validation model:
@@ -288,12 +292,21 @@ final_candidate_boltz_model_0.pdb
 | Off-epitope contacts | 2 |
 | Target CA RMSD | 1.264 Å |
 
-<p align="center"> <img src="figures/rf2_vs_boltz_binding_mode_overlay.png" alt="RF2 and Boltz binding mode overlay" width="900"> </p> <p align="center"> <b>Figure 6.</b> Comparison of RF2 and Boltz antibody binding modes after PD-L1 alignment. The PD-L1 target chains from the RF2 and Boltz models were aligned using Cα atoms, and the antibody poses were overlaid to compare predicted binding modes. PD-L1 is shown in cyan, the RF2 antibody in orange/yellow, and the Boltz antibody in marine/violet. The overlay shows that Boltz independently recovered an epitope-focused binding mode near the RF2-selected design pose. </p>
+<p align="center">
+  <img src="figures/rf2_vs_boltz_binding_mode_overlay.png" alt="RF2 and Boltz binding mode overlay" width="900">
+</p>
+
+<p align="center">
+  <b>Figure 6.</b> Comparison of RF2 and Boltz antibody binding modes after PD-L1 alignment.
+  The PD-L1 target chains from the RF2 and Boltz models were aligned using Cα atoms,
+  and the antibody poses were overlaid to compare predicted binding modes. PD-L1 is shown in cyan,
+  the RF2 antibody in orange/yellow, and the Boltz antibody in marine/violet.
+  The overlay shows that Boltz recovered an epitope-focused binding mode near the RF2-selected design pose.
+</p>
 
 <p align="center">
   <img src="figures/epitope_scoring_summary.png" alt="Epitope scoring summary" width="850">
 </p>
-
 
 <p align="center">
   <b>Figure 7.</b> Quantitative summary of epitope-focused antibody design performance across the workflow.
@@ -304,7 +317,7 @@ final_candidate_boltz_model_0.pdb
 
 Boltz predicted that the final antibody sequence retained an epitope-focused binding mode on PD-L1, covering **21 of 28** atezolizumab-contacting epitope residues with **0.91 epitope precision**.
 
-This orthogonal validation supports the interpretation that the final designed antibody sequence is biased toward the intended PD-L1 epitope rather than an unrelated surface patch.
+This orthogonal computational check supports the interpretation that the final designed antibody sequence is biased toward the intended PD-L1 epitope rather than an unrelated surface patch.
 
 ---
 
@@ -315,7 +328,7 @@ This orthogonal validation supports the interpretation that the final designed a
 - RFantibody can generate antibody-like Fv backbones against a cropped antigen target.
 - ProteinMPNN can redesign antibody loop sequences while preserving backbone geometry.
 - RF2 can refine antibody–antigen complex structures, but environment compatibility is critical.
-- Boltz can provide an independent structural validation step.
+- Boltz can provide an orthogonal computational structure prediction check.
 - Custom epitope-aware scoring is essential for distinguishing epitope-focused candidates from generic surface binders.
 
 ---
@@ -330,10 +343,14 @@ data/
 └── output/
 
 scripts/
-├── extract_pdl1_epitope.py
-├── crop_pdl1_target.py
-├── score_epitope_contacts.py
-└── extract_candidate_sequences.py
+├── 01_extract_pdl1_epitope.py
+├── 02_crop_pdl1_target.py
+├── 03_score_epitope_contacts.py
+├── 04_extract_candidate_sequence.py
+├── 05_run_01_rfantibody_hotspot.sh
+├── 06_run_02_proteinmpnn_top2.sh
+├── 07_run_03_rf2_prediction.sh
+└── 08_run_04_boltz_validation.sh
 
 results/
 ├── rfantibody/
@@ -354,8 +371,32 @@ results/
 figures/
 ├── workflow.png
 ├── epitope_extraction.png
-└── RFantibody_Design.png
+├── pdl1_cropped_target.png
+├── rfantibody_backbone_candidates2.png
+├── RFantibody_Design.png
+├── final_rf2_candidate.png
+├── rf2_vs_boltz_binding_mode_overlay.png
+└── epitope_scoring_summary.png
 ```
+
+`RFantibody_Design.png` is retained as an additional representative RFantibody design image, while `rfantibody_backbone_candidates2.png` is used as the main Figure 4 image in this README.
+
+---
+
+## Script Summary
+
+| Script | Purpose |
+|---|---|
+| `01_extract_pdl1_epitope.py` | Extracts PD-L1 residues within 5 Å of atezolizumab chains F and K from `5X8L` |
+| `02_crop_pdl1_target.py` | Crops PD-L1 chain A to residues 35–135 and writes `pdl1_A35_135.pdb` |
+| `03_score_epitope_contacts.py` | Scores designed antibody–PD-L1 complexes against the atezolizumab-like reference epitope |
+| `04_extract_candidate_sequence.py` | Extracts PD-L1 target, antibody heavy-chain, and antibody light-chain sequences from the selected RF2 complex |
+| `05_run_01_rfantibody_hotspot.sh` | Reproducibility template for hotspot-guided RFantibody backbone generation |
+| `06_run_02_proteinmpnn_top2.sh` | Reproducibility template for ProteinMPNN sequence design of top RFantibody backbones |
+| `07_run_03_rf2_prediction.sh` | Reproducibility template for RF2 complex prediction |
+| `08_run_04_boltz_validation.sh` | Reproducibility template for Boltz structure prediction of the final candidate |
+
+The shell scripts summarize the commands used for RFantibody backbone generation, ProteinMPNN sequence design, RF2 prediction, and Boltz validation. They are provided as reproducibility templates and may require path adjustments depending on the local installation.
 
 ---
 
@@ -374,6 +415,8 @@ AttributeError: 'ConvSE3' object has no attribute 'weights'
 ```
 
 or produce invalid coordinates with extremely large coordinate values. RF2 outputs should therefore be checked for coordinate sanity before scoring.
+
+Model weights and third-party tool repositories are not included in this repository. Users should install RFantibody, ProteinMPNN, RF2, and Boltz following their original installation instructions.
 
 ---
 
