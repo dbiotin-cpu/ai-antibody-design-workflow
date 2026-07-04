@@ -38,7 +38,7 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 
 ### 1. Reference Epitope Extraction
 
-The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues. The epitope extraction script (`01. extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues A35–A135 using `02. crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
+The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues. The epitope extraction script (`01_extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues A35–A135 using `02_crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
 
 This reference epitope served two purposes:
 
@@ -179,7 +179,9 @@ The scoring evaluated:
 
 ### 8. Independent Validation with Boltz
 
-The final selected antibody sequence was submitted to Boltz as an orthogonal structure prediction check.
+The final selected antibody sequence was submitted to Boltz as an orthogonal structure prediction check. The final selected antibody sequence was submitted to Boltz as an orthogonal structure prediction check.
+
+The final RF2 candidate sequence was extracted using `04_extract_candidate_sequences.py`, which prints the PD-L1 target chain, antibody heavy chain, and antibody light chain sequences from the selected RF2-predicted complex. These sequences were then used to prepare the Boltz input YAML file, `final_candidate_boltz.yaml`, for independent structural validation.
 
 Boltz was not used for RFantibody backbone generation, ProteinMPNN sequence design, or RF2 refinement. Therefore, Boltz served as an independent validation step to assess whether the final antibody sequence could recover an epitope-focused PD-L1-binding pose.
 
