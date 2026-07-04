@@ -91,7 +91,17 @@ This motivated a second, epitope-guided design round using hotspot residues deri
 
 ### 4. Hotspot-Guided RFantibody Backbone Generation
 
-Hotspot residues were selected from the atezolizumab-like PD-L1 epitope and used to guide RFantibody backbone generation.
+Hotspot residues were selected from the atezolizumab-like PD-L1 epitope identified in the reference complex (`5X8L`). These residues were used as **structure-derived design hotspots** rather than experimentally measured energetic hotspots. The purpose was to bias RFantibody backbone generation toward the clinically relevant atezolizumab-binding surface while still allowing the model to explore diverse antibody docking geometries.
+
+The hotspot set was chosen to satisfy three practical criteria:
+
+| Criterion | Rationale |
+|---|---|
+| Located within the atezolizumab-contacting PD-L1 epitope | Ensures that RFantibody is guided toward the reference therapeutic antibody binding site |
+| Solvent-exposed and accessible on the cropped PD-L1 target | Makes the residues available for antibody engagement |
+| Distributed across the epitope surface | Avoids focusing the design on a single local patch and better represents the broader atezolizumab-like interface |
+
+The final hotspot set included residues from the central PD-L1 epitope region around A56–A69 and a second epitope region around A112–A117:
 
 ```text
 Hotspot residues:
