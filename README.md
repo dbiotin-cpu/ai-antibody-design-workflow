@@ -26,7 +26,7 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 <p align="center">
 <b>Figure 1.</b> Epitope-focused AI antibody design workflow against PD-L1.
     The pipeline starts from the PD-L1–atezolizumab reference complex (PDB: 5X8L),
-    extracts the atezolizumab-like epitope, crops PD-L1 to residues A35–A135,
+    extracts the atezolizumab-like epitope, crops PD-L1 to residues 35–135 (in chain A),
     generates hotspot-guided RFantibody backbones, designs sequences with ProteinMPNN,
     predicts complexes with RF2, ranks candidates using custom epitope-aware scoring,
     and validates the final candidate with Boltz.
@@ -38,7 +38,7 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 
 ### 1. Reference Epitope Extraction
 
-The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues. The epitope extraction script (`01_extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues A35–A135 using `02_crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
+The experimentally determined atezolizumab–PD-L1 complex structure (`5X8L`) was used to define the target epitope. PD-L1 residues within **5 Å** of atezolizumab were identified as reference epitope residues. The epitope extraction script (`01_extract_pdl1_epitope.py`) identifies PD-L1 residues within 5 Å of atezolizumab chains F and K and prints the resulting residue list to the terminal. Based on this epitope-containing region, PD-L1 was cropped to residues 35–135 (in chain A) using `02_crop_pdl1_target.py`, which generated the cropped antigen input file `pdl1_A35_135.pdb`.
 
 This reference epitope served two purposes:
 
@@ -71,7 +71,7 @@ This cropped target retained the atezolizumab-contacting epitope and neighboring
 
 <p align="center">
   <b>Figure 3.</b> PD-L1 target cropping strategy. The PD-L1 chain from the
-  atezolizumab–PD-L1 reference complex was cropped to residues A35–A135 while
+  atezolizumab–PD-L1 reference complex was cropped to residues 35–135 (in chain A) while
   preserving the reference epitope. Epitope residues are shown in red, and hotspot
   residues used for hotspot-guided RFantibody design are shown in orange.
 </p>
