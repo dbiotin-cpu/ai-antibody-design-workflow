@@ -251,6 +251,21 @@ pdl1_fv_hotspot_set1_1_dldesign_3_best.pdb
 
 This candidate represents a clean epitope-focused antibody design: it engages a substantial fraction of the atezolizumab-like PD-L1 epitope while avoiding off-epitope contacts in the RF2-predicted complex.
 
+<p align="center">
+  <img src="figures/final_rf2_candidate.png" alt="Final RF2 antibody-PD-L1 candidate" width="900">
+</p>
+
+<p align="center">
+  <b>Figure 5.</b> Final RF2-predicted antibody–PD-L1 complex selected from the
+  hotspot-guided RFantibody and ProteinMPNN workflow. PD-L1 is shown in cyan,
+  the designed antibody heavy chain in orange, and the light chain in yellow.
+  Reference epitope residues are shown in red, and hotspot residues used for
+  RFantibody design are highlighted in orange. The final candidate
+  <code>pdl1_fv_hotspot_set1_1_dldesign_3_best.pdb</code> covered 12 of 28
+  reference epitope residues with epitope precision of 1.0 and zero off-epitope
+  contacts.
+</p>
+
 ---
 
 ### Boltz Independent Validation
