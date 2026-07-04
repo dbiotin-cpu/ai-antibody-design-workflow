@@ -24,7 +24,12 @@ This workflow uses a known therapeutic antibody complex as a structural guide. P
 </p>
 
 <p align="center">
-<b>Figure 1.</b> End-to-end computational workflow for epitope-focused antibody design against PD-L1. The pipeline begins with epitope extraction from the experimentally determined PD-L1–atezolizumab complex, followed by target cropping, hotspot-guided RFantibody backbone generation, ProteinMPNN sequence design, RF2 complex prediction, custom epitope-aware scoring, and independent structural validation using Boltz.
+<b>Figure 1.</b> Epitope-focused AI antibody design workflow against PD-L1.
+    The pipeline starts from the PD-L1–atezolizumab reference complex (PDB: 5X8L),
+    extracts the atezolizumab-like epitope, crops PD-L1 to residues A35–A135,
+    generates hotspot-guided RFantibody backbones, designs sequences with ProteinMPNN,
+    predicts complexes with RF2, ranks candidates using custom epitope-aware scoring,
+    and validates the final candidate with Boltz.
 </p>
 
 ---
