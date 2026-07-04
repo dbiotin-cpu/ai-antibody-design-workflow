@@ -55,15 +55,17 @@ This reference epitope served two purposes:
 
 ---
 
-### 2. PD-L1 Target Cropping
+### 2. Target Cropping
 
-To reduce computational cost while preserving the relevant antibody-binding interface, the PD-L1 target was cropped to residues:
+To reduce computational cost while preserving the experimentally validated binding interface, the PD-L1 target was cropped to residues **A35–A135**. This region fully contains the atezolizumab epitope and was used as the antigen input for all subsequent hotspot-guided RFantibody design steps.
 
-```text
-PD-L1 chain A: residues 35–135
-```
+<p align="center">
+  <img src="figures/pdl1_cropped_target.png" alt="PD-L1 cropped target" width="900">
+</p>
 
-This cropped target retained the atezolizumab-contacting epitope and neighboring structural context required for antibody docking and interface evaluation.
+<p align="center">
+<i><b>Figure 3.</b> Target cropping strategy for PD-L1. The reference PD-L1 structure from the PD-L1–atezolizumab complex (left) was cropped to residues A35–A135 (cyan), while preserving the experimentally defined epitope (red). Hotspot residues used for hotspot-guided RFantibody design are highlighted in orange. The cropped antigen (right) served as the input structure for all subsequent RFantibody backbone generation.</i>
+</p>
 
 ---
 
