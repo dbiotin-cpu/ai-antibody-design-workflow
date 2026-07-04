@@ -106,13 +106,14 @@ RFantibody was run using the cropped PD-L1 target and the `hu-4D5-8_Fv` framewor
 Backbone candidates were scored for epitope engagement, and the top two backbones were selected for sequence design.
 
 <p align="center">
-  <img src="figures/rfantibody_backbone_candidates.png" alt="Hotspot-guided RFantibody backbone candidates" width="900">
+  <img src="figures/rfantibody_backbone_candidates2.png" alt="Hotspot-guided RFantibody backbone candidates" width="900">
 </p>
 
 <p align="center">
   <b>Figure 4.</b> Hotspot-guided RFantibody backbone candidates targeting the PD-L1 epitope. 
   Two top RFantibody backbone candidates are shown after hotspot-guided design against the cropped 
-  PD-L1 antigen. PD-L1 is shown in cyan, antibody heavy chains in orange, and light chains in yellow.
+  PD-L1 antigen. PD-L1 is shown in cyan, antibody heavy chains in orange, and light chains in yellow. Reference epitope residues are shown in red, and hotspot residues used to guide RFantibody design 
+  are highlighted in orange.
 </p>
 
 ---
