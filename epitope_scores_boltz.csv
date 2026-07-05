@@ -1,0 +1,2 @@
+design,combined_score,epitope_coverage,epitope_precision,ref_epitope_residue_count,covered_epitope_count,design_contact_count_mapped_to_ref,off_epitope_contact_count,target_CA_RMSD_after_superpose,covered_epitope_residues,missed_epitope_residues,off_epitope_contact_residues
+final_candidate_boltz_model_0.pdb,0.7989130434782608,0.75,0.9130434782608695,28,21,23,2,1.2641008606517883,"54,56,58,59,60,61,62,63,66,68,111,113,115,117,118,119,120,121,122,123,125","45,49,51,52,69,76,112","78,80"
